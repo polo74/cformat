@@ -1,7 +1,9 @@
 #!/bin/bash
 
 format(){
-	for file in $1
+	local path=$1
+	echo "we enter the directory $path"
+	for file in $path
 	do
 		if [ -f $file ] && [[ $file == *.c || $file == *.h ]]
 		then
@@ -11,11 +13,10 @@ format(){
 
 		if [ -d $file ]
 		then
-			echo "we enter the directory $file"
 			format "$file/*"
-			echo "we quit the directory $file"
 		fi
 	done
+	echo "we quit the directory $path"
 }
 
 format $1
