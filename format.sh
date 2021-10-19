@@ -19,4 +19,12 @@ format(){
 	echo "we quit the directory $path"
 }
 
-format $1
+if [[ $1 == -h || $1 == --help ]]
+then
+	echo "usage : cformat <path>"
+elif [ $1 ]
+then
+	format $1
+else
+	format "."
+fi
