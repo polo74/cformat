@@ -18,7 +18,6 @@ check_clang(){
 
 format(){
 	local path=$1
-	echo "we enter the directory $path"
 	for file in $path
 	do
 		if [ -f $file ] && [[ $file == *.c || $file == *.h ]]
@@ -32,7 +31,6 @@ format(){
 			format "$file/*"
 		fi
 	done
-	echo "we quit the directory $path"
 }
 
 check_clang
