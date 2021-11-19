@@ -1,5 +1,21 @@
 #!/bin/bash
 
+check_clang(){
+        local clang_exist=0
+        for i in $(echo $PATH | tr ":" "\n")
+        do
+                if [ -f "$i/clang-format" ]
+                then
+                        clang_exist=1
+                fi
+        done
+        if [ $clang_exist = 0 ]
+        then
+                echo "Please install clang format!"
+                exit -1
+        fi
+}
+
 format(){
 	local path=$1
 	echo "we enter the directory $path"
@@ -18,6 +34,8 @@ format(){
 	done
 	echo "we quit the directory $path"
 }
+
+check_clang
 
 if [[ $1 == -h || $1 == --help ]]
 then
